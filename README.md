@@ -29,7 +29,36 @@ three instances of a Human, then create an array called people of type [Human] w
 Human objects that you have initialized. Create a new array called sortedPeople of type [Human] 
 that is the people array sorted by age.
 </pre> 
-
+class Human: CustomStringConvertible, Equatable, Comparable {
+var name: String
+var age: Int
+var description: String {
+    return "the name is \(name) and age \(age)"
+}
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+static func == (lhs: Human, rhs: Human) -> Bool {
+    return lhs.name == rhs.name && lhs.age == rhs.age
+}
+static func != (lhs: Human, rhs: Human) -> Bool {
+    return lhs.name != rhsrhs.name && lhs.age != rhs.age
+    }   
+static func < (lhs: Human, rhs: Human) -> Bool {
+return lhs.age < rhs.age
+}
+}
+let humanOne = Human(name: "bob", age: 25)
+let humanTwo = Human(name: "bob", age: 25)
+print(humanOne)
+if humanOne == humanTwo {
+print("YAY")
+} else {
+print("Nope!")
+}
+let sortHumans = [humanOne.age, humanTwo.age].sorted {$0 < $1}
+print(sortHumans)
 </br> </br> 
 
 
@@ -46,6 +75,28 @@ Define a Bike struct that implements the Vehicle protocol. numberOfWheels should
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
 </pre>  
+protocol Vehicle {
+var numberOfWheels: Int { set get }
+func drive()
+}
+struct Car: Vehicle {
+var numberOfWheels: Int = 4
+func drive() {
+print("Vroom, vroom!")
+}
+}
+struct Bike: Vehicle {
+var numberOfWheels: Int = 2
+func drive() {
+print("Begin Pedaling!")
+}
+}
+var nissan = Car()
+print(nissan.numberOfWheels)
+nissan.drive()
+var mongoose = Bike()
+print(mongoose.numberOfWheels)
+mongoose.drive()
 
 </br> </br> 
 
@@ -63,7 +114,15 @@ protocol Flyable {
  var airspeedVelocity: Double { get }
 }
 </pre> 
-
+struct Penguin: Bird {
+var name: String = "Penguin"
+var canFly: Bool = false
+}
+struct Eagle: Bird, Flyable {
+var name: String = "Eagle"
+var canFly: Bool = true
+var airspeedVelocity: Double = 5.5
+}
 </br> </br> 
 
 <pre>
