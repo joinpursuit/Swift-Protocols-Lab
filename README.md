@@ -146,7 +146,26 @@ bruceBanner.transform() . // hulk
 
 bruceBanner.transform()  // notHulk
 </pre> 
-
+protocol Transformation {
+mutating func transform()
+}
+enum SuperHero: Transformation {
+case hulk
+case notHulk
+mutating func transform() {
+switch self {
+case .notHulk:
+self = .hulk
+case .hulk:
+self = .notHulk
+}
+}
+}
+var bruceBanner = SuperHero.notHulk
+bruceBanner.transform()
+print(bruceBanner)
+bruceBanner.transform()
+print(bruceBanner)
 </br> </br> 
 
 <pre>
@@ -164,6 +183,27 @@ Question 5.
 // 6. Put an instance of each of your Classes in an array.
 
 // 7. Iterate over the array and have them print talk.
+protocol Communication {
+var talk: String {get}
+}
+
+class Cow: Communication {
+var talk: String = "Hello!"
+}
+class Dog: Communication {
+var talk: String = "HI!!"
+}
+class Cat: Communication {
+var talk: String = "MEOW!"
+}
+
+var cow = Cow()
+var dog = Dog()
+var cat = Cat()
+var array = [cow.talk, dog.talk, cat.talk]
+
+array.forEach{print($0)}
+
 </pre> 
 
 
