@@ -28,6 +28,50 @@ Make the Human class adopt the Comparable protocol. Sorting should be based on a
 three instances of a Human, then create an array called people of type [Human] with all of the
 Human objects that you have initialized. Create a new array called sortedPeople of type [Human] 
 that is the people array sorted by age.
+
+"""
+class Human: CustomStringConvertible, Equatable, Comparable {
+
+
+
+var description: String {
+return "This Human is \(name) and \(age) years old"
+}
+var name: String
+var age: Int
+init(name: String, age:Int){
+self.name = name
+self.age = age
+}
+static func == (lhs: Human, rhs: Human) -> Bool {
+return
+lhs.name == rhs.name && lhs.age == rhs.age
+}
+static func < (lhs: Human, rhs: Human) -> Bool {
+return lhs.age < rhs.age
+}
+}
+
+let myfirstHuman = Human(name: "Raymond Donkemezuo", age: 196)
+let mySecondHuman = Human(name: "Gabriel Lee", age: 86)
+let myThirdHuman = Human(name: "Alice", age: 79)
+let myFourthHuman = Human(name: "Alice jnr", age: 2)
+let myFifthHuman = Human(name: "Alvin", age: 2)
+
+if myfirstHuman == mySecondHuman {
+print("Both humans are thesame person with thesame name and age")
+} else if myfirstHuman != mySecondHuman {
+print("Both humans are different with different names and ages")
+}
+
+var myArray = [Human]()
+var sortedPeople:[Human] = [myfirstHuman, mySecondHuman, myThirdHuman, myFourthHuman, myFifthHuman].sorted{$0 < $1}
+print(sortedPeople)
+
+"""
+
+
+
 </pre> 
 
 </br> </br> 
@@ -47,6 +91,32 @@ and drive() should print "Begin pedaling!". Create an instance of Bike, print it
 then call drive().
 </pre>  
 
+"""
+protocol Vehicle {
+var numberOfWheels: Int {get}
+func drive()
+}
+struct Car: Vehicle {
+var numberOfWheels: Int
+func drive() {
+print("Vroom, vroom!")
+}
+}
+let myDreamCar = Car(numberOfWheels: 4)
+print("The number of wheels of my dream car is \(myDreamCar.numberOfWheels)")
+
+
+struct Bike: Vehicle{
+var numberOfWheels: Int
+func drive() {
+print("Begin pedaling!")
+}
+}
+
+let myBike = Bike(numberOfWheels: 2)
+print("The number of wheels of my bike is \(myBike.numberOfWheels)")
+
+"""
 </br> </br> 
 
 <pre> 
@@ -63,6 +133,33 @@ protocol Flyable {
  var airspeedVelocity: Double { get }
 }
 </pre> 
+
+"""
+
+protocol Bird {
+var name: String { get }
+var canFly: Bool { get }
+}
+
+protocol Flyable {
+var airspeedVelocity: Double { get }
+}
+
+struct fligthLessBird: Bird {
+var name: String = "Dodo"
+
+var canFly: Bool = false
+
+
+}
+
+struct eagle:Flyable {
+var airspeedVelocity: Double = 3.142
+
+}
+
+
+"""
 
 </br> </br> 
 
