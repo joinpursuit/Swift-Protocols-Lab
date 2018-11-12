@@ -15,8 +15,41 @@ Question 1.
 Create a Human class with two properties: name of type String, and age of type Int. You'll need to 
 create a memberwise initializer for the class. Initialize two Human instances.
 
+class Human {
+    var name: String
+    var age: Int
+
+    init(name: String, age: Int) {
+    self.name = name
+    self.age = age
+    }
+}
+
+let aaron = Human(name: "Aaron", age: 24)
+let alex = Human(name: "Alex", age: 30)
+
 Make the Human class adopt the CustomStringConvertible. Print both of your previously initialized
 Human objects.
+
+class Human: CustomStringConvertible {
+var description: String {
+return "\(name)\'s age is \(age)"
+}
+var name: String
+var age: Int
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+}
+
+let aaron = Human(name: "Aaron", age: 24)
+let alex = Human(name: "Alex", age: 30)
+
+print(aaron)
+print(alex)
+
 
 Make the Human class adopt the Equatable protocol. Two instances of Human should be considered equal
 if their names and ages are identical to one another. Print the result of a boolean expression 
@@ -24,10 +57,61 @@ evaluating whether or not your two previously initialized Human objects are equa
 (using ==). Then print the result of a boolean expression evaluating whether or not your two
 previously initialized Human objects are not equal to eachother (using !=).
 
+class Human: CustomStringConvertible , Equatable{
+var description: String {
+return "\(name)\'s age is \(age)"
+}
+var name: String
+var age: Int
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+
+static func == (lhs: Person, rhs: Person) -> Bool {
+return
+lhs.age == rhs.age 
+}
+}
+
+let aaron = Human(name: "Aaron", age: 24)
+let alex = Human(name: "Alex", age: 30)
+
+if aaron == alex {
+print("same person")
+} else {
+print("different indiviuals")
+}
+
 Make the Human class adopt the Comparable protocol. Sorting should be based on age. Create another
 three instances of a Human, then create an array called people of type [Human] with all of the
 Human objects that you have initialized. Create a new array called sortedPeople of type [Human] 
 that is the people array sorted by age.
+
+class Human: CustomStringConvertible , Comparable{
+var description: String {
+return "\(name)\'s age is \(age)"
+}
+var name: String
+var age: Int
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+
+static func < (lhs: Person, rhs: Person) -> Bool {
+return
+lhs.age < rhs.age
+}
+
+let aaron = Human(name: "Aaron", age: 24)
+let alex = Human(name: "Alex", age: 30)
+
+let sortedPeople = [aaron, alex].sorted {$0 < $1}
+print(sortedPeople)
+
 </pre> 
 
 </br> </br> 
@@ -38,13 +122,51 @@ Question 2.
 Create a protocol called Vehicle with two requirements: a nonsettable numberOfWheels property of
 type Int, and a function called drive().
 
+protocol Vehicle {
+var numberOfWheels: Int {get}
+static func drive()
+
+}
+
 Define a Car struct that implements the Vehicle protocol. numberOfWheels should return a value of 4,
 and drive() should print "Vroom, vroom!" Create an instance of Car, print its number of wheels, 
 then call drive().
 
+protocol Vehicle {
+var numberOfWheels: Int {get}
+static func drive()
+
+}
+
+class Car: Vehicle{
+var numberOfWheels: Int = 4
+
+static func drive() {
+print("Vroom Vroom!")
+}
+}
+
+
 Define a Bike struct that implements the Vehicle protocol. numberOfWheels should return a value of 2,
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
+
+class Bike: Vehicle{
+var numberOfWheels: Int {
+return 2
+}
+
+static func drive() {
+print("Begin Pedaling!")
+}
+
+}
+
+let bike = Bike()
+print(bike.numberOfWheels)
+Bike.drive()
+
+
 </pre>  
 
 </br> </br> 
@@ -62,6 +184,25 @@ protocol Bird {
 protocol Flyable {
  var airspeedVelocity: Double { get }
 }
+
+stuct Penguin: Bird {
+var name: String {
+return "Penguin"
+}
+var canFly: Bool {
+return false
+}
+}
+stuct Eagle: Bird {
+var name: String {
+return "Eagle"
+}
+var canFly: Bool {
+return true
+}
+}
+
+
 </pre> 
 
 </br> </br> 
