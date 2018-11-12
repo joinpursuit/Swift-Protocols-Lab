@@ -30,6 +30,34 @@ Human objects that you have initialized. Create a new array called sortedPeople 
 that is the people array sorted by age.
 </pre> 
 
+class ViewController: UIViewController {
+
+class Human: CustomStringConvertible, Equatable, Comparable {
+var description: String
+var name: String
+var age: Int
+
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+
+static func == (lhs: ViewController.Human, rhs: ViewController.Human) -> Bool {
+return
+lhs.age == rhs.age && lhs.name == rhs.name {
+print("They have the same name and age.")
+}
+}
+
+let randoPerson = Human(name: "Randy", age: 38)
+let familiarPerson = Human(name: "Rafael", age: 36)
+
+let personArray = [randoPerson, familiarPerson].sorted { $0 < $1 }
+print(personArray)
+}
+}
+
 </br> </br> 
 
 
