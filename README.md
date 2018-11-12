@@ -238,4 +238,26 @@ Question 5.
 // 7. Iterate over the array and have them print talk.
 </pre> 
 
+```swift
+protocol Communication {
+    var talk: String {get}
+}
+class Cow: Communication {
+    var talk: String = "Moo"
+}
+class Dog: Communication {
+    var talk: String = "Woof"
+}
+class Cat: Communication {
+    var talk: String = "Meow"
+}
+let cow = Cow()
+let dog = Dog()
+let cat = Cat()
+let animalsArray: [Communication] = [cow,dog,cat]
+for animals in animalsArray {
+    print(animals.talk)
+}
+```
+
 
