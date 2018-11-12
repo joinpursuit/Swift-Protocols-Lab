@@ -98,7 +98,41 @@ then call drive().
 </pre>  
 
 </br> </br> 
+```swift
+protocol Vehicle {
+    var numberOfWheels: Int {get}
+    
+    func drive()
+}
 
+struct Car: Vehicle {
+    var numberOfWheels: Int = 4
+    
+    func drive() {
+        print("Vroom, vroom!")
+    }
+    
+    
+}
+
+let Ford = Car()
+print(Ford.numberOfWheels)
+Ford.drive()
+
+struct Bike: Vehicle {
+    var numberOfWheels: Int = 2
+    
+    func drive() {
+        print("Begin pedaling!")
+    }
+    
+    
+}
+
+let mountainBike = Bike()
+print(mountainBike.numberOfWheels)
+mountainBike.drive()
+```
 <pre> 
 Question 3. 
 // Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
