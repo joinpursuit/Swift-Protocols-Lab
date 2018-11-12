@@ -184,6 +184,25 @@ protocol Bird {
 protocol Flyable {
  var airspeedVelocity: Double { get }
 }
+
+stuct Penguin: Bird {
+var name: String {
+return "Penguin"
+}
+var canFly: Bool {
+return false
+}
+}
+stuct Eagle: Bird {
+var name: String {
+return "Eagle"
+}
+var canFly: Bool {
+return true
+}
+}
+
+
 </pre> 
 
 </br> </br> 
