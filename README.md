@@ -30,7 +30,6 @@ Human objects that you have initialized. Create a new array called sortedPeople 
 that is the people array sorted by age.
 </pre> 
 
-</br> </br> 
 ```swift
 class Human: CustomStringConvertible, Equatable, Comparable {
     var name: String
@@ -81,7 +80,7 @@ let sortedPeople = people.sorted {$0 < $1}
 print(sortedPeople)
 
 ```
-
+</br> </br> 
 
 <pre> 
 Question 2. 
@@ -97,7 +96,6 @@ and drive() should print "Begin pedaling!". Create an instance of Bike, print it
 then call drive().
 </pre>  
 
-</br> </br> 
 ```swift
 protocol Vehicle {
     var numberOfWheels: Int {get}
@@ -133,6 +131,8 @@ let mountainBike = Bike()
 print(mountainBike.numberOfWheels)
 mountainBike.drive()
 ```
+</br> </br> 
+
 <pre> 
 Question 3. 
 // Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
