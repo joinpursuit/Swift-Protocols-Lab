@@ -122,13 +122,51 @@ Question 2.
 Create a protocol called Vehicle with two requirements: a nonsettable numberOfWheels property of
 type Int, and a function called drive().
 
+protocol Vehicle {
+var numberOfWheels: Int {get}
+static func drive()
+
+}
+
 Define a Car struct that implements the Vehicle protocol. numberOfWheels should return a value of 4,
 and drive() should print "Vroom, vroom!" Create an instance of Car, print its number of wheels, 
 then call drive().
 
+protocol Vehicle {
+var numberOfWheels: Int {get}
+static func drive()
+
+}
+
+class Car: Vehicle{
+var numberOfWheels: Int = 4
+
+static func drive() {
+print("Vroom Vroom!")
+}
+}
+
+
 Define a Bike struct that implements the Vehicle protocol. numberOfWheels should return a value of 2,
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
+
+class Bike: Vehicle{
+var numberOfWheels: Int {
+return 2
+}
+
+static func drive() {
+print("Begin Pedaling!")
+}
+
+}
+
+let bike = Bike()
+print(bike.numberOfWheels)
+Bike.drive()
+
+
 </pre>  
 
 </br> </br> 
