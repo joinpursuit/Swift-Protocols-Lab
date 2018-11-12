@@ -30,7 +30,46 @@ Human objects that you have initialized. Create a new array called sortedPeople 
 that is the people array sorted by age.
 </pre> 
 
+class Human: CustomStringConvertible, Equatable, Comparable {
+
+var name: String
+var age: Int
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+
+//CustomStringConvertible
+var description: String {
+return "\(name) is \(age) years old"
+}
+
+//Equatable
+static func == (lhs: Human, rhs: Human) -> Bool {
+return lhs.age == rhs.age && lhs.name == rhs.name
+}
+
+//Comparable
+static func < (lhs: Human, rhs: Human) -> Bool {
+return lhs.age < rhs.age
+}
+
+}
+
+let abby = Human.init(name: "Abby", age: 19)
+let jianTing = Human.init(name: "Jian Ting", age: 28)
+let humans = [abby, jianTing]
+
+humans.forEach { (person: Human) -> () in print(person) }
+abby == jianTing ? print("Same Person"): print("Different Person")
+
+//the dollars sign knows what it's refering to
+let sortedHumans = humans.sorted {$0 < $1}
+print(sortedHumans)
 </br> </br> 
+
+
 
 
 <pre> 
@@ -46,8 +85,44 @@ Define a Bike struct that implements the Vehicle protocol. numberOfWheels should
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
 </pre>  
+protocol Vehicle {
+var numberOfWheels: Int { get }
+func drive()
+}
 
+struct Car: Vehicle {
+var numberOfWheels: Int {
+return 4
+}
+
+func drive() {
+print("Vroom, vroom!")
+}
+}
+
+let car1 = Car()
+print(car1.numberOfWheels)
+car1.drive()
+
+struct Bike: Vehicle {
+var numberOfWheels: Int {
+return 2
+}
+
+func drive() {
+print("Begin pedaling!")
+}
+}
+
+let bike1 = Bike()
+print(bike1.numberOfWheels)
+bike1.drive()
 </br> </br> 
+
+
+
+
+
 
 <pre> 
 Question 3. 
@@ -63,6 +138,30 @@ protocol Flyable {
  var airspeedVelocity: Double { get }
 }
 </pre> 
+
+protocol Bird {
+var name: String { get }
+var canFly: Bool { get }
+var canSwing: Bool { get }
+}
+
+protocol Flyable {
+var airspeedVelocity: Double { get }
+}
+
+
+struct Penguin: Bird {
+var name: String = "Penguin"
+var canFly: Bool = false
+var canSwing: Bool = true
+}
+
+struct Eagle: Bird, Flyable {
+var name: String = "Eagle"
+var canFly: Bool = true
+var canSwing: Bool = false
+var airspeedVelocity: Double = 10
+}
 
 </br> </br> 
 
@@ -88,7 +187,40 @@ bruceBanner.transform() . // hulk
 bruceBanner.transform()  // notHulk
 </pre> 
 
+
+protocol Transformation {
+mutating func transform()
+}
+
+enum SuperHero: Transformation {
+case hulk
+case notHulk
+
+mutating func transform() {
+switch self {
+case .hulk:
+self = .notHulk
+case .notHulk:
+self = .hulk
+}
+}
+}
+
+var bruceBanner = SuperHero.notHulk
+
+bruceBanner.transform()  // hulk
+print(bruceBanner)
+
+bruceBanner.transform()  // notHulk
+print(bruceBanner)
+
 </br> </br> 
+
+
+
+
+
+
 
 <pre>
 Question 5. 
