@@ -29,7 +29,47 @@ three instances of a Human, then create an array called people of type [Human] w
 Human objects that you have initialized. Create a new array called sortedPeople of type [Human] 
 that is the people array sorted by age.
 </pre> 
+'''Swift
+class Human: CustomStringConvertible,Equatable,Comparable  {
+static func < (lhs: Human, rhs: Human) -> Bool {
+return
+lhs.age < rhs.age
+}
 
+static func == (lhs: Human, rhs: Human) -> Bool {
+return
+lhs.age == rhs.age && lhs.name == rhs.name
+}
+
+var description: String{
+return "Name:\(name), Age:\(age)"
+}
+
+
+var name: String
+var age: Int
+
+init(name: String, age: Int){
+self.name = name
+self.age = age
+}
+}
+
+let humanOne = Human(name: "HumanFirst", age: 40)
+let humanTwo = Human(name: "HumanSecond", age: 400)
+let humanOneClone = Human(name: "HumanFirst", age: 40)
+
+var Humanz = [humanOne,humanTwo,humanOneClone]
+
+if humanOneClone == humanOne {
+print("same person")
+}else{
+print("diff person")
+}
+
+let sortedPeople = Humanz.sorted{ $0 < $1 }
+print(sortedPeople)
+'''
 </br> </br> 
 
 
@@ -46,6 +86,37 @@ Define a Bike struct that implements the Vehicle protocol. numberOfWheels should
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
 </pre>  
+'''Swift
+protocol Vehicle {
+var nummerOfWheels: Int {get}
+func drive ()
+}
+
+struct Car: Vehicle {
+
+func drive() {
+print("Vroom, vroom!")
+}
+
+var nummerOfWheels: Int = 4
+
+}
+
+struct Bike: Vehicle{
+func drive() {
+print("Begin pedaling!")
+}
+
+var nummerOfWheels: Int = 2
+}
+
+let hotWheel = Car(nummerOfWheels: 4)
+let bigWheel = Bike(nummerOfWheels: 2)
+print(hotWheel)
+hotWheel.drive()
+print(bigWheel)
+bigWheel.drive()
+'''
 
 </br> </br> 
 
@@ -55,14 +126,42 @@ Question 3.
 Give your structs some properties and have them conform to the appropriate protocols.
 
 protocol Bird {
- var name: String { get }
- var canFly: Bool { get }
+var name: String { get }
+var canFly: Bool { get }
 }
 
 protocol Flyable {
- var airspeedVelocity: Double { get }
+var airspeedVelocity: Double { get }
 }
 </pre> 
+
+'''Swift
+protocol Bird {
+var name: String { get }
+var canFly: Bool { get }
+}
+
+protocol Flyable {
+var airspeedVelocity: Double { get }
+}
+
+struct Penguin: Bird {
+var name: String = "Penguin"
+
+var canFly: Bool = false
+
+
+}
+
+struct Eagle: Bird, Flyable {
+var name: String = "Eagle"
+
+var canFly: Bool = true
+
+var airspeedVelocity: Double = 5.0
+
+}
+'''
 
 </br> </br> 
 
@@ -77,7 +176,7 @@ bruceBanner. Make it so that when the transform function is called that bruceBan
 .notHulk to .hulk.
 
 enum SuperHero: Transformation {
-    // write code here.
+// write code here.
 }
 
 Example Output: 
@@ -87,6 +186,33 @@ bruceBanner.transform() . // hulk
 
 bruceBanner.transform()  // notHulk
 </pre> 
+
+'''Swift
+protocol Transformation {
+mutating func transform()
+}
+
+enum SuperHero: Transformation {
+
+case Hulk
+case notHulk
+
+mutating func transform() {
+switch self {
+case .Hulk:
+self = .notHulk
+case .notHulk:
+self = .Hulk
+}
+}    
+}
+
+var bruceBanner = SuperHero.notHulk
+bruceBanner.transform()
+print(bruceBanner)
+bruceBanner.transform()
+print(bruceBanner)
+'''
 
 </br> </br> 
 
