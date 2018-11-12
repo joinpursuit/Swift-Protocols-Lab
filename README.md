@@ -30,10 +30,55 @@ Human objects that you have initialized. Create a new array called sortedPeople 
 that is the people array sorted by age.
 </pre> 
 
-</br> </br> 
+</br>
+
+class Human: CustomStringConvertible, Equatable, Comparable {
+static func < (lhs: Human, rhs: Human) -> Bool {
+return
+lhs.age < rhs.age
+}
+
+static func == (lhs: Human, rhs: Human) -> Bool {
+return
+lhs.name == rhs.name &&
+lhs.age == rhs.age
+}
+
+var description: String {
+return "The human\'s name is \(name) and they are \(age) years old"
+}
+
+var name: String
+var age: Int
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+}
+
+let matt = Human(name: "Matt", age: 25)
+print(matt)
+
+let kevin = Human(name: "Kevin", age: 28)
+print(kevin)
+
+
+if matt == kevin {
+print("These two equal each other")
+} else {
+print("These two are not equal")
+}
+
+let sortedPeople = [matt, kevin].sorted {$0 < $1}
+print(sortedPeople)
+
+
+</br> 
 
 
 <pre> 
+
 Question 2. 
 Create a protocol called Vehicle with two requirements: a nonsettable numberOfWheels property of
 type Int, and a function called drive().
@@ -47,9 +92,39 @@ and drive() should print "Begin pedaling!". Create an instance of Bike, print it
 then call drive().
 </pre>  
 
-</br> </br> 
+</br>
+protocol Vehicle {
+var numberOfWheels: Int {get}
+func drive()
+}
+
+struct Car: Vehicle {
+var numberOfWheels: Int = 4
+func drive() {
+print("Vroom, vroom!")
+}
+}
+
+var honda = Car()
+print(honda.numberOfWheels)
+print(honda.drive())
+
+
+struct Bike: Vehicle {
+var numberOfWheels: Int = 2
+
+func drive() {
+print("Begin pedaling!")
+}
+}
+
+var bike = Bike()
+print(bike.numberOfWheels)
+print(bike.drive())
+</br> 
 
 <pre> 
+
 Question 3. 
 // Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
 Give your structs some properties and have them conform to the appropriate protocols.
@@ -64,9 +139,34 @@ protocol Flyable {
 }
 </pre> 
 
-</br> </br> 
+</br>
+
+protocol Bird {
+var name: String { get }
+var canFly: Bool { get }
+}
+
+protocol Flyable {
+var airspeedVelocity: Double { get }
+}
+
+struct Penguin: Bird, Flyable {
+var name: String
+var canFly: Bool
+var airspeedVelocity: Double
+}
+
+struct Eagle: Bird, Flyable {
+var name: String
+var canFly: Bool
+var airspeedVelocity: Double
+
+}
+
+</br> 
 
 <pre>
+
 Question 4. 
 // Create a protocol called Transformation
 
@@ -88,9 +188,32 @@ bruceBanner.transform() . // hulk
 bruceBanner.transform()  // notHulk
 </pre> 
 
-</br> </br> 
+</br> 
+protocol Transformation {
+mutating func transform()
+}
+enum SuperHero: Transformation {
+case hulk
+case notHulk
+mutating func transform() {
+switch self {
+case .notHulk:
+self = .hulk
+case .hulk:
+self = .notHulk
+}
+}
+}
+var bruceBanner = SuperHero.notHulk
+bruceBanner.transform()
+print(bruceBanner)
+bruceBanner.transform()
+print(bruceBanner)
+
+</br> 
 
 <pre>
+
 Question 5. 
 // 1. Create a protocol called Communication
 
@@ -106,5 +229,35 @@ Question 5.
 
 // 7. Iterate over the array and have them print talk.
 </pre> 
+
+protocol Communication {
+var talk: String {get}
+}
+
+class Cow: Communication {
+var talk: String {
+return "Moo!"
+}
+}
+
+class Dog: Communication {
+var talk: String {
+return "Woof!"
+}
+}
+
+class Cat: Communication {
+var talk: String {
+return "Meow!"
+}
+}
+
+var cow = Cow()
+var dog = Dog()
+var cat = Cat()
+
+let animalArray = [cow.talk, dog.talk, cat.talk]
+animalArray.forEach {print($0)}
+
 
 
