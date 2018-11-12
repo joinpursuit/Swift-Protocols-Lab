@@ -14,6 +14,43 @@
 Question 1.
 Create a Human class with two properties: name of type String, and age of type Int. You'll need to 
 create a memberwise initializer for the class. Initialize two Human instances.
+''' class Human: CustomStringConvertible, Equatable, Comparable {
+//var description: String
+var gender: String
+var age: Int
+var description: String {
+return "The person\'s age is \(age) and the gender is \(gender)"
+}
+init(gender: String, age: Int) {
+self.gender = gender
+self.age = age
+}
+static func == (lhs: Human, rhs: Human) -> Bool {
+return
+lhs.gender == rhs.gender && lhs.age == rhs.age
+
+}
+static func < (lhs: Human, rhs: Human) -> Bool {
+return lhs.age < rhs.age
+}
+}
+
+let mexican = Human(gender:"female" , age: 30)
+let asian = Human(gender: "male", age: 25)
+let greek = Human(gender: "male", age: 34)
+print(mexican)
+
+if asian == greek {
+print("these humans are the same but differentm, still human tho! ")
+} else  if  asian != greek {
+print("not the same person but both humans")
+
+}
+
+let sortedHumans = [mexican, asian, greek].sorted {$0 < $1}
+print(sortedHumans) 
+'''
+
 
 Make the Human class adopt the CustomStringConvertible. Print both of your previously initialized
 Human objects.
@@ -29,6 +66,7 @@ three instances of a Human, then create an array called people of type [Human] w
 Human objects that you have initialized. Create a new array called sortedPeople of type [Human] 
 that is the people array sorted by age.
 </pre> 
+''' all the answers are on on top'''
 
 </br> </br> 
 
@@ -45,6 +83,35 @@ then call drive().
 Define a Bike struct that implements the Vehicle protocol. numberOfWheels should return a value of 2,
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
+'''protocol Vehicle {
+var numberOfWheels: Int { get }
+func drive()
+}
+
+struct Car: Vehicle {
+static let name = "Alan"
+var numberOfWheels: Int = 4
+func drive() {
+print("voom")
+}
+}
+let myCar = Car.init()
+
+print(" the something \(myCar.numberOfWheels)")
+myCar.drive()
+Car.name
+
+struct Bike: Vehicle {
+var numberOfWheels: Int = 2
+func drive(){
+print("Begin pedaling!")
+}
+}
+
+let myBike = Bike.init()
+print("My bike has \(myBike.numberOfWheels) wheels")
+myBike.drive() 
+'''
 </pre>  
 
 </br> </br> 
@@ -62,6 +129,39 @@ protocol Bird {
 protocol Flyable {
  var airspeedVelocity: Double { get }
 }
+''' protocol Bird {
+var name: String { get }
+var canFly: Bool { get }
+}
+
+protocol Flyable {
+var airspeedVelocity: Double { get }
+}
+
+class Penguin: Bird {
+var name: String
+var canFly: Bool
+var location: String
+init(name: String, canFly: Bool, location: String) {
+self.name = name
+self.canFly = canFly
+self.location = location
+}
+}
+
+class Eagle: Bird, Flyable {
+var airspeedVelocity: Double
+var name: String
+var canFly: Bool
+var isItPretty: Bool
+init(airspeedVelocity: Double, name: String, canFly: Bool, isItPretty: Bool) {
+self.airspeedVelocity = airspeedVelocity
+self.name = name
+self.canFly = canFly
+self.isItPretty = isItPretty
+}
+}
+'''
 </pre> 
 
 </br> </br> 
