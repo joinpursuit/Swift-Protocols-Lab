@@ -109,7 +109,7 @@ lhs.age < rhs.age
 let aaron = Human(name: "Aaron", age: 24)
 let alex = Human(name: "Alex", age: 30)
 
-let sortedPeople = [kathy, genesis].sorted {$0 < $1}
+let sortedPeople = [aaron, alex].sorted {$0 < $1}
 print(sortedPeople)
 
 </pre> 
