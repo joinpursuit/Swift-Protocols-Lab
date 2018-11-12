@@ -32,6 +32,54 @@ that is the people array sorted by age.
 
 </br> </br> 
 ```swift
+class Human: CustomStringConvertible, Equatable, Comparable {
+    var name: String
+    var age: Int
+    
+    var description: String {
+        return "This person's name is \(name) and their age is \(age)"
+    }
+
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        return lhs.name == rhs.name && lhs.age == rhs.age
+    }
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        return lhs.age < rhs.age
+    }
+    
+}
+
+let person1 = Human(name: "John", age: 27)
+let person2 = Human(name: "Jane", age: 25)
+
+print(person1)
+print(person2)
+
+if person1 == person2 {
+    print("Same person")
+} else {
+    print("different individuals")
+}
+
+if person1 != person2 {
+    print("different individuals")
+} else {
+    print("Same person")
+
+}
+
+let person3 = Human(name: "Mark", age: 19)
+let person4 = Human(name: "Mary", age: 16)
+let person5 = Human(name: "Luis", age: 30)
+let people: [Human] = [person1, person2, person3, person4, person5]
+let sortedPeople = people.sorted {$0 < $1}
+print(sortedPeople)
+
 ```
 
 
