@@ -30,6 +30,53 @@ Human objects that you have initialized. Create a new array called sortedPeople 
 that is the people array sorted by age.
 </pre> 
 
+```swift
+class Human: CustomStringConvertible, Equatable, Comparable {
+var name: String
+var age: Int
+
+
+init(name: String, age: Int){
+self.name = name
+self.age = age
+
+}
+
+var description: String{
+return ("The human named \(name) is \(age) years old")
+}
+
+static func == (lhs: Human, rhs: Human) -> Bool {
+return lhs.name == rhs.name && lhs.age == rhs.age
+}
+
+static func < (lhs: Human, rhs: Human) -> Bool {
+return lhs.age < rhs.age
+}
+
+}
+
+let mar = Human.init(name: "Marcio", age: 32)
+let ana = Human.init(name: "Ana", age: 29)
+let mike = Human.init(name: "Mike", age: 46)
+let luis = Human.init(name: "Luis", age: 31)
+let manuel = Human.init(name: "Manuel", age: 48)
+
+print(ana)
+print(mar)
+
+print(mar == ana)
+print(mar != ana)
+
+var people = [mar, ana, mike, luis, manuel]
+var sortedPeople = people.sorted()
+print(sortedPeople)
+
+
+
+
+```
+
 </br> </br> 
 
 
@@ -47,6 +94,38 @@ and drive() should print "Begin pedaling!". Create an instance of Bike, print it
 then call drive().
 </pre>  
 
+```swift
+protocol Vehicle{
+var numberOfWheels: Int {get}
+
+func drive()
+}
+
+struct Car: Vehicle {
+var numberOfWheels: Int
+func drive() {
+print("Vroom, vroom")
+}
+}
+
+let bochito = Car.init(numberOfWheels: 4)
+
+print("bochito has \(bochito.numberOfWheels) wheels")
+bochito.drive()
+
+struct Bike: Vehicle {
+var numberOfWheels: Int
+func drive() {
+print("Begin pedaling!")
+}
+}
+
+let blue = Bike.init(numberOfWheels: 2)
+print("blue is a bike with \(blue.numberOfWheels) wheels")
+blue.drive()
+
+```
+
 </br> </br> 
 
 <pre> 
@@ -63,6 +142,32 @@ protocol Flyable {
  var airspeedVelocity: Double { get }
 }
 </pre> 
+
+```swift
+protocol Bird {
+var name: String { get }
+var canFly: Bool { get }
+}
+
+protocol Flyable {
+var airspeedVelocity: Double { get }
+}
+
+struct Penguin: Bird {
+var name: String
+var canFly: Bool
+var cute: Bool
+}
+
+struct Eagle: Bird, Flyable {
+var name: String
+var canFly: Bool
+var airspeedVelocity: Double
+var cute: Bool
+}
+
+
+```
 
 </br> </br> 
 
@@ -86,7 +191,35 @@ var bruceBanner = SuperHero.notHulk
 bruceBanner.transform() . // hulk
 
 bruceBanner.transform()  // notHulk
+
 </pre> 
+```swift
+protocol Transformation{
+
+mutating func transform()
+}
+
+enum SuperHero: Transformation {
+case hulk
+case nothulk
+
+mutating func transform() {
+switch self{
+case .hulk:
+self = .nothulk
+case .nothulk:
+self = .hulk
+}
+}
+}
+
+var bruceBanner = SuperHero.nothulk
+bruceBanner.transform()
+print(bruceBanner)
+
+
+```
+
 
 </br> </br> 
 
@@ -106,5 +239,49 @@ Question 5.
 
 // 7. Iterate over the array and have them print talk.
 </pre> 
+
+```swift
+protocol Communication{
+var talk: String {get}
+
+}
+
+class Cow: Communication{
+var talk: String
+
+init(talk: String) {
+self.talk = talk
+}
+
+}
+
+class Dog: Communication{
+var talk: String
+
+init(talk: String){
+self.talk = talk
+}
+}
+
+class Cat: Communication{
+var talk: String
+
+init(talk: String) {
+self.talk = talk
+}
+}
+
+
+var cow = Cow.init(talk: "muuu")
+var dog = Dog.init(talk: "wuf wuf")
+var cat = Cat.init(talk: "meow")
+
+var arrayOfInstances = [cow.talk, dog.talk, cat.talk]
+
+for i in arrayOfInstances{
+print(i)
+}
+
+```
 
 
