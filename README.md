@@ -30,6 +30,7 @@ Human objects that you have initialized. Create a new array called sortedPeople 
 that is the people array sorted by age.
 </pre> 
 
+```swift
 class Human: CustomStringConvertible, Equatable, Comparable {
 
 var name: String
@@ -67,6 +68,7 @@ abby == jianTing ? print("Same Person"): print("Different Person")
 //the dollars sign knows what it's refering to
 let sortedHumans = humans.sorted {$0 < $1}
 print(sortedHumans)
+```
 </br> </br> 
 
 
@@ -85,6 +87,7 @@ Define a Bike struct that implements the Vehicle protocol. numberOfWheels should
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
 </pre>  
+```swift
 protocol Vehicle {
 var numberOfWheels: Int { get }
 func drive()
@@ -117,6 +120,8 @@ print("Begin pedaling!")
 let bike1 = Bike()
 print(bike1.numberOfWheels)
 bike1.drive()
+```
+
 </br> </br> 
 
 
@@ -129,6 +134,7 @@ Question 3.
 // Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
 Give your structs some properties and have them conform to the appropriate protocols.
 
+
 protocol Bird {
  var name: String { get }
  var canFly: Bool { get }
@@ -139,6 +145,7 @@ protocol Flyable {
 }
 </pre> 
 
+```swift
 protocol Bird {
 var name: String { get }
 var canFly: Bool { get }
@@ -162,6 +169,7 @@ var canFly: Bool = true
 var canSwing: Bool = false
 var airspeedVelocity: Double = 10
 }
+```
 
 </br> </br> 
 
@@ -187,7 +195,7 @@ bruceBanner.transform() . // hulk
 bruceBanner.transform()  // notHulk
 </pre> 
 
-
+```swift
 protocol Transformation {
 mutating func transform()
 }
@@ -213,7 +221,7 @@ print(bruceBanner)
 
 bruceBanner.transform()  // notHulk
 print(bruceBanner)
-
+```
 </br> </br> 
 
 
