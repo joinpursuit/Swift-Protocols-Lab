@@ -32,6 +32,53 @@ that is the people array sorted by age.
 
 </br> </br> 
 
+'''Swift
+class Human: CustomStringConvertible, Equatable, Comparable {
+
+var description: String {
+return "The human's name is \(name), and (s)he is \(age) years old."
+}
+
+var name: String
+var age: Int
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+
+static func == (lhs: Human, rhs: Human) -> Bool {
+return lhs.age == rhs.age && lhs.name == rhs.name
+}
+
+static func < (lhs: Human, rhs: Human) -> Bool {
+return lhs.age < rhs.age
+}
+}
+
+let walter = Human(name: "Walter White", age: 50)
+let jesse = Human(name: "Jesse Pinkman", age: 25)
+let jane = Human(name: "Jane Zhu", age: 25)
+let luxie = Human(name: "Lux Liu", age: 2)
+let garen = Human(name: "Garen Liu", age: 0)
+
+print(walter)
+print(jesse)
+
+print(walter == jesse) // output false
+print(walter != jesse) // output true
+
+let humanArr: [Human] = [walter, jesse, jane, luxie, garen]
+let sortedPeople: [Human] = humanArr.sorted()
+print(sortedPeople)
+
+'''
+
+
+
+
+
+
 
 <pre> 
 Question 2. 
@@ -46,6 +93,38 @@ Define a Bike struct that implements the Vehicle protocol. numberOfWheels should
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
 </pre>  
+
+
+'''Swift
+protocol Vehicle {
+var numberOfWheels: Int { get }
+func drive()
+}
+
+struct Car: Vehicle {
+var numberOfWheels: Int {
+return 4
+}
+func drive() {
+print("Vroom, vroom!")
+}
+}
+let odyssey = Car.init()
+print(odyssey.numberOfWheels)
+odyssey.drive()
+
+struct Bike: Vehicle {
+var numberOfWheels: Int {
+return 2
+}
+func drive() {
+print("Begin pedaling")
+}
+}
+let citibike = Bike.init()
+print(citibike.numberOfWheels)
+citibike.drive()
+'''
 
 </br> </br> 
 
@@ -63,6 +142,29 @@ protocol Flyable {
  var airspeedVelocity: Double { get }
 }
 </pre> 
+
+'''
+protocol Bird {
+var name: String { get }
+var canFly: Bool { get }
+}
+
+protocol Flyable {
+var airspeedVelocity: Double { get }
+}
+
+struct Penguin: Bird {
+var name: String
+var canFly: Bool = false
+var height: Int
+}
+
+struct Eagle: Bird, Flyable {
+var name: String
+var canFly: Bool = true
+var airspeedVelocity: Double
+}
+'''
 
 </br> </br> 
 
@@ -88,6 +190,30 @@ bruceBanner.transform() . // hulk
 bruceBanner.transform()  // notHulk
 </pre> 
 
+'''Swift
+protocol Transformation {
+mutating func transform()
+}
+
+enum SuperHero: Transformation {
+case notHulk
+case hulk
+
+mutating func transform() {
+switch self {
+case .notHulk:
+self = .hulk
+case .hulk:
+self = .notHulk
+}
+}
+}
+var bruceBanner = SuperHero.notHulk
+bruceBanner.transform()
+print(bruceBanner)
+bruceBanner.transform()
+print(bruceBanner)
+'''
 </br> </br> 
 
 <pre>
@@ -107,4 +233,29 @@ Question 5.
 // 7. Iterate over the array and have them print talk.
 </pre> 
 
+'''Swift
+protocol Communication {
+var talk: String { get }
+}
 
+class Cow: Communication {
+var talk: String = "Moo"
+}
+
+class Dog: Communication {
+var talk: String = "Woof"
+}
+
+class Cat: Communication {
+var talk: String = "Meow"
+}
+let kitten = Cat.init()
+let puppy = Dog.init()
+let babyCow = Cow.init()
+
+let animalArr: [Communication] = [kitten, puppy, babyCow]
+
+for animal in animalArr {
+print(animal.talk)
+}
+'''
