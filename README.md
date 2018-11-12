@@ -29,7 +29,24 @@ three instances of a Human, then create an array called people of type [Human] w
 Human objects that you have initialized. Create a new array called sortedPeople of type [Human] 
 that is the people array sorted by age.
 </pre> 
+class Human: CustomStringConvertible {
+var description: String {
+return "\(name), \(age)"
+}
 
+var name: String
+var age: Int
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+}
+var leee = Human.init(name: "lee", age: 7)
+var jefff = Human.init(name: "jeff", age: 50)
+
+print(leee)
+print(jefff)
 </br> </br> 
 
 
