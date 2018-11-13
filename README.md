@@ -247,6 +247,7 @@ Question 5.
 // 7. Iterate over the array and have them print talk.
 </pre> 
 
+```swift
 protocol Communication {
     var talk: String { get }
 }
@@ -280,5 +281,5 @@ for animal in animals {
     print(animal.talk)
 }
 
-
+```
 
