@@ -247,4 +247,38 @@ Question 5.
 // 7. Iterate over the array and have them print talk.
 </pre> 
 
+protocol Communication {
+    var talk: String { get }
+}
+
+class Cat: Communication {
+    var talk: String {
+    return "Meowww...!"
+    }
+}
+
+class Dog: Communication {
+    var talk: String {
+    return "Woff! Woff!"
+    }
+}
+
+class Cow: Communication {
+    var talk: String {
+    return "Moooo!"
+    }
+}
+
+let cat = Cat()
+let dog = Dog()
+let cow = Cow()
+
+//let animals = [cat, dog, cow] as [Communication]
+let animals: [Communication] = [cat, dog, cow]
+
+for animal in animals {
+    print(animal.talk)
+}
+
+
 
