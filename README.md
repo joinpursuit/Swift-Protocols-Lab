@@ -219,11 +219,16 @@ var airspeedVelocity: Double = 99.9
 ```
 
 Question 4. 
-// Create a protocol called Transformation
+Create a protocol called Transformation
+Create a mutating method called transform
 
-// create a mutating method called transform
 
-// Make an enum called SuperHero (have it conform to Transformation) and an instance of it named
+```swift
+protocol Transformation {
+mutating func transform()
+}
+```
+/Make an enum called SuperHero (have it conform to Transformation) and an instance of it named
 bruceBanner. Make it so that when the transform function is called that bruceBanner turns from 
 .notHulk to .hulk.
 
@@ -237,11 +242,28 @@ var bruceBanner = SuperHero.notHulk
 bruceBanner.transform() . // hulk
 
 bruceBanner.transform()  // notHulk
-</pre> 
 
-</br> </br> 
 
-<pre>
+```swift
+enum SuperHero: Transformation {
+case hulk
+case notHulk
+
+mutating func transform() {
+switch self {
+case .hulk:
+self = .notHulk
+case .notHulk:
+self = .hulk
+}
+}
+}
+
+var bruceBanner = SuperHero.notHulk
+bruceBanner.transform()
+bruceBanner.transform()
+```
+
 Question 5. 
 // 1. Create a protocol called Communication
 
@@ -256,6 +278,36 @@ Question 5.
 // 6. Put an instance of each of your Classes in an array.
 
 // 7. Iterate over the array and have them print talk.
-</pre> 
 
+Answer:
+```swift
+protocol Communication {
+var talk: String { get }
+}
 
+class Cow: Communication {
+let talk: String = "Moo moo!"
+}
+
+class Dog: Communication {
+let talk: String = "Bork!"
+}
+
+class Cat: Communication {
+let talk: String = "Meow I'm the best!"
+}
+
+let mooMoo = Cow()
+let doggo = Dog()
+let bestPetEver = Cat()
+
+mooMoo.talk
+doggo.talk
+bestPetEver.talk
+
+let allTheSounds: [Communication] = [mooMoo,doggo,bestPetEver]
+
+for animal in allTheSounds {
+print(animal.talk)
+}
+```
