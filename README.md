@@ -10,11 +10,12 @@
 1. Submit a Pull Request back to the assignment repo
 1. Paste a link of the pull request on Canvas and submit
 
-<pre> 
+
 Question 1.
 Create a Human class with two properties: name of type String, and age of type Int. You'll need to 
 create a memberwise initializer for the class. Initialize two Human instances.
 
+Answer:
 ```swift
 class Human {
 var name: String
@@ -33,7 +34,8 @@ var ginger = Human(name: "Ginger", age: 30)
 Make the Human class adopt the CustomStringConvertible. Print both of your previously initialized
 Human objects.
 
-``swift
+Answer:
+```swift
 class Human: CustomStringConvertible {
 var name: String
 var age: Int
@@ -61,6 +63,7 @@ evaluating whether or not your two previously initialized Human objects are equa
 (using ==). Then print the result of a boolean expression evaluating whether or not your two
 previously initialized Human objects are not equal to eachother (using !=).
 
+Answer:
 ```swift
 class Human: CustomStringConvertible, Equatable {
 var name: String
@@ -86,13 +89,14 @@ var ginger = Human(name: "Ginger", age: 30, description: "The older sister.")
 
 print(sunni == ginger)
 print(sunni.age == ginger.age)
-
+```
 
 Make the Human class adopt the Comparable protocol. Sorting should be based on age. Create another
 three instances of a Human, then create an array called people of type [Human] with all of the
 Human objects that you have initialized. Create a new array called sortedPeople of type [Human] 
 that is the people array sorted by age.
 
+Answer:
 ```swift
 class Human: CustomStringConvertible, Equatable, Comparable {
 var name: String
@@ -129,25 +133,56 @@ var sortedHumans = humanArray.sorted()
 ```
 
 
- 
 Question 2. 
 Create a protocol called Vehicle with two requirements: a nonsettable numberOfWheels property of
 type Int, and a function called drive().
+
+Answer:
+```swift
+protocol Vehicle {
+var numberOfWheels: Int { get }
+
+func drive()
+}
+```
 
 Define a Car struct that implements the Vehicle protocol. numberOfWheels should return a value of 4,
 and drive() should print "Vroom, vroom!" Create an instance of Car, print its number of wheels, 
 then call drive().
 
+Answer:
+```swift
+struct Car: Vehicle {
+let numberOfWheels: Int = 4
+
+func drive() {
+print("Vroom, vroom!")
+}
+}
+```
+
 Define a Bike struct that implements the Vehicle protocol. numberOfWheels should return a value of 2,
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
-</pre>  
 
-</br> </br> 
+Answer:
+```swift
+struct Bike: Vehicle {
+let numberOfWheels: Int = 2
 
-<pre> 
+func drive() {
+print("Begin pedaling!")
+}
+}
+
+let myBike = Bike()
+print(myBike.numberOfWheels)
+myBike.drive()
+```
+
+
 Question 3. 
-// Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
+Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
 Give your structs some properties and have them conform to the appropriate protocols.
 
 protocol Bird {
@@ -158,11 +193,31 @@ protocol Bird {
 protocol Flyable {
  var airspeedVelocity: Double { get }
 }
-</pre> 
 
-</br> </br> 
+Answer:
+```swift
+protocol Bird {
+var name: String { get }
+var canFly: Bool { get }
+}
 
-<pre>
+protocol Flyable {
+var airspeedVelocity: Double { get }
+}
+
+struct Penguin: Bird {
+let name: String = "Penguin"
+let canFly: Bool = false
+}
+
+struct Eagle: Bird, Flyable {
+let name: String = "Eagle"
+let canFly: Bool = false
+
+var airspeedVelocity: Double = 99.9
+}
+```
+
 Question 4. 
 // Create a protocol called Transformation
 
