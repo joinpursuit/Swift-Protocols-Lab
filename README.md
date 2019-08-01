@@ -15,8 +15,45 @@ Question 1.
 Create a Human class with two properties: name of type String, and age of type Int. You'll need to 
 create a memberwise initializer for the class. Initialize two Human instances.
 
+```swift
+class Human {
+var name: String
+var age: Int
+
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+}
+}
+
+var sunni = Human(name: "Sunni", age: 27)
+var ginger = Human(name: "Ginger", age: 30)
+```
+
 Make the Human class adopt the CustomStringConvertible. Print both of your previously initialized
 Human objects.
+
+``swift
+class Human: CustomStringConvertible {
+var name: String
+var age: Int
+
+var description: String
+
+init(name: String, age: Int, description: String) {
+self.name = name
+self.age = age
+
+self.description = description
+}
+}
+
+var sunni = Human(name: "Sunni", age: 27, description: "The younger sister.")
+var ginger = Human(name: "Ginger", age: 30, description: "The older sister.")
+
+print(sunni)
+print(ginger)
+```
 
 Make the Human class adopt the Equatable protocol. Two instances of Human should be considered equal
 if their names and ages are identical to one another. Print the result of a boolean expression 
@@ -24,16 +61,75 @@ evaluating whether or not your two previously initialized Human objects are equa
 (using ==). Then print the result of a boolean expression evaluating whether or not your two
 previously initialized Human objects are not equal to eachother (using !=).
 
+```swift
+class Human: CustomStringConvertible, Equatable {
+var name: String
+var age: Int
+
+var description: String
+
+init(name: String, age: Int, description: String) {
+self.name = name
+self.age = age
+
+self.description = description
+}
+
+static func == (lhs: Human, rhs: Human) -> Bool {
+return  lhs.name == rhs.name &&
+lhs.age == rhs.age
+}
+}
+
+var sunni = Human(name: "Sunni", age: 27, description: "The younger sister.")
+var ginger = Human(name: "Ginger", age: 30, description: "The older sister.")
+
+print(sunni == ginger)
+print(sunni.age == ginger.age)
+
+
 Make the Human class adopt the Comparable protocol. Sorting should be based on age. Create another
 three instances of a Human, then create an array called people of type [Human] with all of the
 Human objects that you have initialized. Create a new array called sortedPeople of type [Human] 
 that is the people array sorted by age.
-</pre> 
 
-</br> </br> 
+```swift
+class Human: CustomStringConvertible, Equatable, Comparable {
+var name: String
+var age: Int
+
+var description: String
+
+init(name: String, age: Int, description: String) {
+self.name = name
+self.age = age
+
+self.description = description
+}
+
+static func == (lhs: Human, rhs: Human) -> Bool {
+return  lhs.name == rhs.name &&
+lhs.age == rhs.age
+}
+
+static func < (lhs: Human, rhs: Human) -> Bool {
+return lhs.age < rhs.age
+}
+}
+
+var sunni = Human(name: "Sunni", age: 27, description: "The younger sister.")
+var ginger = Human(name: "Ginger", age: 30, description: "The older sister.")
+var alyson = Human(name: "Alyson", age: 52, description: "She told me she's 52.")
+var iram = Human(name: "Iram", age: 83, description: "He said whatever you think is appropriate and I said 'that's not an int'.")
+var david = Human(name: "David", age: 30, description: "I think.")
+
+var humanArray:[Human] = [sunni,ginger,alyson,iram,david]
+
+var sortedHumans = humanArray.sorted()
+```
 
 
-<pre> 
+ 
 Question 2. 
 Create a protocol called Vehicle with two requirements: a nonsettable numberOfWheels property of
 type Int, and a function called drive().
