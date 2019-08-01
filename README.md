@@ -40,6 +40,48 @@ Create a new array called sortedPeople of type [`Human`] that is the people arra
 
 </br> </br>
 
+```swift
+
+class Human: CustomStringConvertible, Equatable, Comparable {
+
+    var name: String
+    var age: Int
+
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+
+    var description: String {
+        return "My name is \(name), and I'm \(age) years old."
+    }
+
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        return lhs.name == rhs.name && lhs.age == rhs.age
+    }
+
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        return lhs.age < rhs.age
+        }
+    }
+
+let human1 = Human(name: "Mariel", age: 38)
+let human2 = Human(name: "Eliel", age: 41)
+print(human1)
+print(human2)
+human1 == human2
+human1 > human2
+let human3 = Human(name: "Mariangel", age: 15)
+let human4 = Human(name: "Sophia", age: 12)
+let human5 = Human(name: "Liana", age: 35)
+
+let people: [Human] = [human1, human2, human3, human4, human5]
+print(people)
+
+let sortedPeople = people.sorted()
+print(sortedPeople)
+```
+
 
 ## Question 2
 
