@@ -139,12 +139,38 @@ Give your structs some properties and have them conform to the appropriate proto
 
 ```swift
 protocol Bird {
- var name: String { get }
- var canFly: Bool { get }
+    var name: String { get }
+    var canFly: Bool { get }
 }
 
 protocol Flyable {
- var airspeedVelocity: Double { get }
+    var airspeedVelocity: Double { get }
+}
+
+
+struct Penguin: Bird, Flyable, CustomStringConvertible {
+    var airspeedVelocity: Double = 0.0
+    var name: String
+    var canFly: Bool = false
+    var color: String = "Black and White"
+    var size: Int
+
+    var description: String {
+        return "\(name) is a flightless bird. It's plumage is \(color) and it's size is \(size) feet"
+    }
+
+}
+
+struct Eagle: Bird, CustomStringConvertible {
+    var name: String
+    var canFly: Bool = true
+    var canSoar: Bool = true
+    var isAwesome: Bool = true
+    var airspeedVelocity: Double = 10.5
+
+    var description: String {
+        return "\(name) is a flying bird, it's airspeed Velocity is \(airspeedVelocity). They're an american symbol of freedom and awesomeness."
+    }
 }
 ```
 
