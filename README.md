@@ -23,14 +23,69 @@ a. Create a `Human` class with two properties:
 
 Then create an initializer for the class and create two `Human` instances.
 
+```swift
+class Human {
+    let name: String
+    let age: Int
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+
+let ahad = Human(name: "Ahad", age: 22)
+let eddie = Human(name: "Edward", age: 21)
+```
 b. Make the `Human` class adopt the CustomStringConvertible protocol. Then print both of your previously initialized
 `Human` objects.
 
+```swift
+class Human: CustomStringConvertible {
+    let name: String
+    let age: Int
+    var description: String { "Human(name: \(name), age: \(age))" }
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+
+let ahad = Human(name: "Ahad", age: 22)
+let eddie = Human(name: "Edward", age: 21)
+
+print(ahad) //Prints Human(name: Ahad, age: 22)
+print(eddie) //Prints Human(name: Edward, age: 21)
+```
 c. Make the `Human` class adopt the Equatable protocol. Two instances of `Human` should be considered equal
 if their names and ages are identical to one another. Print the result of a boolean expression
 evaluating whether or not your two previously initialized `Human` objects are equal to eachother
 (using ==). Then print the result of a boolean expression evaluating whether or not your two
 previously initialized `Human` objects are not equal to eachother (using !=).
+```swift
+class Human: CustomStringConvertible, Equatable {
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        if lhs.age != rhs.age || lhs.name != rhs.name {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    let name: String
+    let age: Int
+    var description: String { "Human(name: \(name), age: \(age))" }
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+let ahad = Human(name: "Ahad", age: 22)
+let eddie = Human(name: "Edward", age: 21)
+print(ahad == eddie) //Prints false
+```
 
 d. Make the `Human` class adopt the `Comparable` protocol. One `Human` is greater than another `Human` if its age is bigger. Create another
 three instances of a `Human`, then create an array called people of type [`Human`] with all of the
@@ -39,7 +94,44 @@ three instances of a `Human`, then create an array called people of type [`Human
 Create a new array called sortedPeople of type [`Human`] that is the people array sorted by age.
 
 </br> </br>
+```swift
+class Human: CustomStringConvertible, Equatable, Comparable {
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        if lhs.age < rhs.age {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        if lhs.age != rhs.age || lhs.name != rhs.name {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    let name: String
+    let age: Int
+    var description: String { "Human(name: \(name), age: \(age))" }
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
 
+let ahad = Human(name: "Ahad", age: 22)
+let eddie = Human(name: "Edward", age: 21)
+let howard = Human(name: "Howard", age: 30)
+let jeffers = Human(name: "Jeffrey", age: 32)
+let greg = Human(name: "Gregory", age: 34)
+let kelby = Human(name: "Kelby", age: 36)
+let jon = Human(name: "Jon", age: 40)
+
+let sortedPeople: [Human] = [ahad, howard, eddie, jeffers, greg, kelby, jon].sorted()
+```
 
 ## Question 2
 
