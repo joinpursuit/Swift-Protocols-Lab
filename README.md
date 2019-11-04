@@ -40,6 +40,58 @@ Create a new array called sortedPeople of type [`Human`] that is the people arra
 
 </br> </br>
 
+//  Anwers:
+class Human: CustomStringConvertible, Equatable, Comparable {
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        return lhs.age > rhs.age
+    }
+    
+    static func > (lhs: Human, rhs: Human) -> Bool {
+        return lhs.age > rhs.age
+    }
+    
+    
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        return lhs.name == rhs.name &&
+             lhs.age == rhs.age
+    }
+    
+    static func != (lhs: Human, rhs: Human) -> Bool {
+        return lhs.name != rhs.name &&
+             lhs.age != rhs.age
+    }
+    
+    var name: String
+    var age: Int
+    
+    init(name: String, age: Int)    {
+        self.name = name
+        self.age = age
+    }
+    
+    var description: String {
+        return "\(name) is, \(age) years old."
+    }
+}
+
+let juan = Human(name: "Juan", age: 26)
+let drAcula = Human(name: "Dr. Acula", age: 32)
+let batman = Human(name: "Bruce", age: 29)
+let humanArray = [juan, drAcula, batman]
+
+print(juan)
+print(drAcula)
+print(drAcula == juan)
+print(drAcula != juan)
+
+var sortedHumans = [Human]()
+
+func sortByAge(humanArray: [Human])    {
+    //sort using for loop
+}
+
+sortedHumans = humanArray.sorted(by: {$0.age < $1.age})
+print(sortedHumans)
 
 ## Question 2
 
@@ -57,6 +109,40 @@ then call drive().
 
 </br> </br>
 
+//  Answers:
+protocol Vehicle    {
+    var numberOfWheels: Int { get }
+    
+    func drive()
+}
+
+struct Car: Vehicle {
+    var numberOfWheels: Int {
+        return 4
+    }
+    
+    func drive() {
+        print("Vroom vroom!")
+    }
+}
+
+let rangeRover = Car()
+print(rangeRover.numberOfWheels)
+rangeRover.drive()
+
+struct Bycicle: Vehicle {
+    var numberOfWheels: Int {
+        return 2
+    }
+    
+    func drive() {
+        print("Begin Pedaling!")
+    }
+}
+
+let peeWeesBike = Bycicle()
+print(peeWeesBike.numberOfWheels)
+peeWeesBike.drive()
 
 ## Question 3
 // Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
@@ -75,6 +161,24 @@ protocol Flyable {
 ```
 
 </br> </br>
+
+//  Answers:
+struct Penguin: Bird, Flyable  {
+    var name = "Penguin"
+    var canFly = false
+    var airspeedVelocity: Double    { return 0}
+    
+    var canSwim = true
+
+}
+
+struct Eagle: Bird, Flyable  {
+    var name = "Struct"
+    var canFly = true
+    var airspeedVelocity: Double    { return 75}
+    
+    var canSwim = false
+}
 
 ## Question 4
 
