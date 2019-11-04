@@ -39,7 +39,56 @@ three instances of a `Human`, then create an array called people of type [`Human
 Create a new array called sortedPeople of type [`Human`] that is the people array sorted by age.
 
 </br> </br>
+```
+class Human: CustomStringConvertible, Equatable, Comparable {
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        return lhs.age < rhs.age
+    }
+    
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        return  lhs.description == rhs.description
+    }
+    
+    
+    
+    var description: String {
+        return "name is \(name) and age is \(age)"
+    }
+    static var humans = [Human]()
+    
+    
+    var name: String
+    var age: Int
+    init(name:String, age:Int) {
+        self.name = name
+        self.age = age
+        Human.humans.append(self)
+    }
+    
+}
 
+var human1 = Human(name: "Luba", age: 30)
+var human2 = Human(name: "Martin", age: 40)
+print(human1)
+print(human2)
+if human1 == human2 {
+    print("it is the same person")
+} else {
+    print("different people")
+}
+
+if human1 > human2 {
+    print("\(human1.name) is older then \(human2.name)")
+} else {
+    print("\(human2.name) is older then \(human1.name)")
+}
+
+var human3 = Human(name: "John", age: 27)
+var human4 = Human(name: "Jane", age: 36)
+var human5 = Human(name: "Denis", age: 21)
+
+print(Human.humans.sorted(by: {$0.age < $1.age}))
+```
 
 ## Question 2
 
@@ -56,7 +105,32 @@ and drive() should print "Begin pedaling!". Create an instance of Bike, print it
 then call drive().
 
 </br> </br>
+```
+protocol Vehicle {
+    var numberOfWheels: Int { get }
+    func drive()
+}
 
+struct Car: Vehicle {
+    var numberOfWheels: Int = 4
+    func drive() {
+        print("Vroom, vroom!")
+    }
+}
+var car = Car()
+print(car.numberOfWheels)
+car.drive()
+
+struct Bike: Vehicle {
+    var numberOfWheels: Int = 2
+    func drive() {
+        print("Begin pedaling!")
+    }
+}
+var bike = Bike()
+print(bike.numberOfWheels)
+bike.drive()
+```
 
 ## Question 3
 // Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
@@ -71,6 +145,26 @@ protocol Bird {
 
 protocol Flyable {
  var airspeedVelocity: Double { get }
+}
+```
+```
+protocol Bird {
+ var name: String { get }
+ var canFly: Bool { get }
+}
+
+protocol Flyable {
+ var airspeedVelocity: Double { get }
+}
+
+struct Penguin: Bird {
+    var name = "Luba"
+    var canFly: Bool = false
+}
+struct Eagle: Bird, Flyable {
+    var name: String = "Bob"
+    var canFly: Bool = true
+    var airspeedVelocity: Double = 32.5
 }
 ```
 
@@ -97,6 +191,26 @@ bruceBanner.transform() . // hulk
 
 bruceBanner.transform()  // notHulk
 ```
+```
+protocol Transformation {
+    mutating func transform()
+}
+
+enum SuperHero: Transformation {
+    case notHulk
+    case hulk
+   mutating func transform() {
+        if self == .notHulk {
+            self = .hulk
+        } else {
+            self = .notHulk
+        }
+    }
+}
+var bruceBanner = SuperHero.notHulk
+bruceBanner.transform()
+bruceBanner.transform()
+```
 
 </br> </br>
 
@@ -116,7 +230,27 @@ e. `message` should return a unique message for each animal when talk is called.
 f. Put an instance of each of your classes in an array.
 
 g. Iterate over the array and have them print their `message` property
+```
+protocol Communication {
+    var message: String { get }
+    
+}
+class Cow: Communication {
+    var message: String = "moo"
+}
+class Dog: Communication {
+    var message: String = "woof"
+}
+class Cat: Communication {
+    var message: String = "meow"
+}
+var cow = Cow()
+var dog = Dog()
+var cat = Cat()
+var animals:[Communication] = [cow, dog, cat]
 
+ animals.forEach { print($0.message)}
+```
 
 ## Question 6
 
