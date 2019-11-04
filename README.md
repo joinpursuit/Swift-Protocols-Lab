@@ -20,9 +20,60 @@
 a. Create a `Human` class with two properties:
 - `name` of type String
 - `age` of type Int.
+```
+class Human: CustomStringConvertible, Equatable, Comparable {
+     
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        print("\(rhs.name) is greater")
+           return lhs.age < rhs.age
+       }
+       
+       static func > (lhs: Human, rhs: Human) -> Bool {
+              print("\(lhs.name) is greater")
+           return lhs.age > rhs.age
+          }
+    
+    
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        print("Are they the same?")
+        return lhs.age == rhs.age
+    }
+    
+    static func != (lhs: Human, rhs: Human) -> Bool{
+          print("These are different Humans")
+          return lhs.age != rhs.age
+      }
+    
+    
+    var name: String
+    var age: Int
+    
+    var description: String {
+    return ("This is a human, his name is \(name) and he is \(age) years old")
+       }
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+   
+}
+
+var abigail = Human(name: "Abigail", age: 11)
+var justin = Human(name: "Justin", age: 16)
+
+print (abigail)
+print (justin)
+print(abigail == justin)
+print(abigail != justin)
+print(abigail < justin)
+print(abigail > justin)
 
 
 
+
+
+```
 Then create an initializer for the class and create two `Human` instances.
 
 b. Make the `Human` class adopt the CustomStringConvertible protocol. Then print both of your previously initialized
@@ -41,6 +92,8 @@ three instances of a `Human`, then create an array called people of type [`Human
 Create a new array called sortedPeople of type [`Human`] that is the people array sorted by age.
 
 </br> </br>
+
+
 
 
 ## Question 2
