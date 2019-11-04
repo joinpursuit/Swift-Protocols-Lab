@@ -69,7 +69,11 @@ print(abigail != justin)
 print(abigail < justin)
 print(abigail > justin)
 
+var kim = Human(name: "Kim", age: 45)
+var mel = Human(name: "Mel", age: 37)
+var antonio = Human(name: "Antonio", age: 21)
 
+var people = [kim, mel, antonio, justin, abigail]
 
 
 
