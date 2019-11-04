@@ -21,6 +21,8 @@ a. Create a `Human` class with two properties:
 - `name` of type String
 - `age` of type Int.
 
+
+
 Then create an initializer for the class and create two `Human` instances.
 
 b. Make the `Human` class adopt the CustomStringConvertible protocol. Then print both of your previously initialized
