@@ -118,8 +118,40 @@ and drive() should print "Begin pedaling!". Create an instance of Bike, print it
 then call drive().
 
 </br> </br>
+```
+protocol Vehicle {
+    var numberOfWheels: Int {get}
+    func drive()
+}
+
+struct Car: Vehicle {
+    var numberOfWheels: Int{
+        return 4
+    }
+    func drive() {
+       print("Vroom, vroom!")
+    }
+}
+
+var ferrari = Car()
+print(ferrari.numberOfWheels)
+ferrari.drive()
+
+struct Bike: Vehicle {
+    var numberOfWheels: Int{
+        return 2
+    }
+    func drive() {
+        print("Begin pedaling")
+    }
+}
+
+var bicycle = Bike()
+print(bicycle.numberOfWheels)
+bicycle.drive()
 
 
+```
 ## Question 3
 // Given the below two protocols, create a struct for penguin(a flightless bird) and an eagle.
 
