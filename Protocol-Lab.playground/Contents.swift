@@ -8,22 +8,62 @@ import UIKit
 //
 //Then create an initializer for the class and create two `Human` instances.
 
-class Human {
+class Human: CustomStringConvertible, Equatable, Comparable {
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        return lhs.age < rhs.age
+    }
+    
     var name: String
     var age: Int
+    var description: String {
+        return "name is \(name) and age is \(age)"
+    }
+    static var people = [Human]()
     
     init(name: String, age: Int) {
         self.name = name
         self.age = age
+        Human.people.append(self)
+    }
+     
+    
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        return lhs.name  == rhs.name && lhs.age == rhs.age
     }
 }
 
-var human1 = Human(name: "Adam", age: 21)
-var human2 = Human(name: "Eva", age: 17)
+let human1 = Human(name: "Adam", age: 21)
+let human2 = Human(name: "Eva", age: 17)
+let human3 = Human(name: "Misha", age: 13)
+let human4 = Human(name: "Milana", age: 33)
+let human5 = Human(name: "Gloria", age: 52)
+
+if human1 == human2 {
+    print("they are equal")
+} else {
+    print("they are not equal")
+}
+
+if human1 != human2 {
+    print("they are not equal")
+} else {
+    print("they are equal")
+}
+
+if human1 < human2 {
+    print("\(human2.name) is older that \(human1.name)")
+} else {
+    print("\(human1.name) is older that \(human2.name)")
+}
+
+let people = [human1, human2, human3, human4, human5]
+let sortedPeople = Human.people.sorted(by: {$0.age < $1.age})
+print(sortedPeople)
 
 //b. Make the `Human` class adopt the CustomStringConvertible protocol. Then print both of your previously initialized
 //`Human` objects.
 
+ 
 
 //c. Make the `Human` class adopt the Equatable protocol. Two instances of `Human` should be considered equal
 //if their names and ages are identical to one another. Print the result of a boolean expression
@@ -36,7 +76,6 @@ var human2 = Human(name: "Eva", age: 17)
 //`Human` objects that you have initialized.
 //
 //Create a new array called sortedPeople of type [`Human`] that is the people array sorted by age.
-
 
 
 //## Question 2
