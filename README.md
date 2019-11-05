@@ -204,6 +204,29 @@ bruceBanner.transform()  // notHulk
 
 </br> </br>
 
+//  Answers:
+protocol Transformation  {
+    mutating func transform()
+}
+
+enum Superhero: Transformation  {
+    case notHulk
+    case hulk
+    
+    mutating func transform() {
+        switch self {
+        case .notHulk:
+            self = .hulk
+            print("\(self)! Smash!")
+        case .hulk:
+            self = .hulk
+            print("Hulk Smash!")
+        }
+    }
+}
+
+var bruceBanner = Superhero.notHulk
+bruceBanner.transform()
 
 ## Question 5
 
@@ -221,6 +244,52 @@ f. Put an instance of each of your classes in an array.
 
 g. Iterate over the array and have them print their `message` property
 
+//  Answers:
+protocol Communication  {
+    var message: String { get }
+}
+
+class Cow: Communication, CustomStringConvertible   {
+    var message: String { return "Moo"}
+    func talk() {
+        print("\(message)")
+    }
+    
+    var description: String { return message}
+}
+
+class Dog: Communication, CustomStringConvertible   {
+    var message: String {return "Woof"}
+    func talk() {
+        print("\(message)")
+    }
+    
+    var description: String { return message}
+}
+
+class Cat: Communication, CustomStringConvertible   {
+    var message: String {return"Meow"}
+    func talk() {
+        print("\(message)")
+    }
+    
+    var description: String { return message}
+}
+
+var garfield = Cat()
+garfield.talk()
+
+var snoopy = Dog()
+snoopy.talk()
+
+var miltank = Cow()
+miltank.talk()
+
+var animalArr: [Any] = [garfield, snoopy, miltank]
+
+for num in 0...animalArr.count-1 {
+    print(animalArr[num])
+}
 
 ## Question 6
 
