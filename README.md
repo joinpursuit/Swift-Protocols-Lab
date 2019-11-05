@@ -75,6 +75,9 @@ var antonio = Human(name: "Antonio", age: 21)
 
 var people = [kim, mel, antonio, justin, abigail]
 
+var peopleSorted = people.sorted(by: {$0.age < $1.age})
+
+print(peopleSorted)
 
 
 ```
