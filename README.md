@@ -167,7 +167,19 @@ protocol Flyable {
  var airspeedVelocity: Double { get }
 }
 ```
+```
+struct Penguin: Bird {
+ var name = ""
+    var canFly = false
+    
+}
 
+struct Eagle: Flyable {
+    var airspeedVelocity = 7.8
+    
+}
+
+```
 </br> </br>
 
 ## Question 4
@@ -181,7 +193,21 @@ c. Create an instance of it named `bruceBanner`. Make it so that when the transf
 
 ```swift
 enum SuperHero: Transformation {
-    // write code here.
+    
+    protocol Transformation {
+        mutating func()
+
+    }
+
+    enum SuperHero: Transformation {
+        var notHulk
+        var hulk
+
+        mutating func(){
+
+        }
+    }
+
 }
 
 // Example Output:
